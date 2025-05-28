@@ -78,6 +78,7 @@ public class PlayerServiceImp implements IPlayerService{
 		return false;
 	}
 
+	//delete player records by teamName
 	@Override
 	public int deletePlayersByTeam(String teamName) {
 		

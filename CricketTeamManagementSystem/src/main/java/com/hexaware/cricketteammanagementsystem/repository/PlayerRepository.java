@@ -11,6 +11,7 @@ import com.hexaware.cricketteammanagementsystem.entity.Player;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Integer>{
 	
+	//delete player records by teamName
 	@Modifying
 	@Query(nativeQuery = true, value = "delete from player where team_name = :teamName")
 	public int deleteByTeamName(@Param("teamName") String teamName);

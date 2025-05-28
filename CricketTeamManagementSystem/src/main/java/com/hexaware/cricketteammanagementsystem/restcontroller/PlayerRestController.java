@@ -71,6 +71,8 @@ public class PlayerRestController {
 		return "Player Removed";
 	}
 	
+	
+	//delete player records by teamName
 	@DeleteMapping("/team/{teamName}")
 	public String deletePlayersByTeam(@PathVariable String teamName)
 	{
