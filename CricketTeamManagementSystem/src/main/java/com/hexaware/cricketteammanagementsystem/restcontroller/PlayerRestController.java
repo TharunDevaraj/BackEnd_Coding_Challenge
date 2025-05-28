@@ -1,6 +1,5 @@
 package com.hexaware.cricketteammanagementsystem.restcontroller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +28,10 @@ public class PlayerRestController {
 	IPlayerService playerService;
 	
 	@GetMapping("/")
-	public List<PlayerResponseDTO> getAllPlayers()
+	public List<Player> getAllPlayers()
 	{
-		List<Player> players=playerService.getAllPlayers();
+		return playerService.getAllPlayers();
 		
-		List<PlayerResponseDTO> playerDetails = new ArrayList<>();
-		
-		for(Player player:players)
-		{
-			playerDetails.add(EntityToDTO(player));
-		}
-		
-		return playerDetails;
 	}
 	
 	@GetMapping("/{playerId}")
@@ -73,11 +64,20 @@ public class PlayerRestController {
 	}
 	
 	@DeleteMapping("/{playerId}")
-	public String deletePlayerById(@PathVariable int playerId)
+	public String deletePlayerById(@PathVariable int playerId) throws PlayerNotFoundException
 	{
 		playerService.deletePlayerById(playerId);
 		
 		return "Player Removed";
+	}
+	
+	@DeleteMapping("/team/{teamName}")
+	public String deletePlayersByTeam(@PathVariable String teamName)
+	{
+		int rowsDeleted = playerService.deletePlayersByTeam(teamName);
+		
+		return "No of player records deleted : "+rowsDeleted;
+		
 	}
 	
 	private PlayerResponseDTO EntityToDTO(Player player)

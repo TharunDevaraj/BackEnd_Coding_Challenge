@@ -10,7 +10,10 @@ import com.hexaware.cricketteammanagementsystem.exception.InvalidRoleException;
 import com.hexaware.cricketteammanagementsystem.exception.PlayerNotFoundException;
 import com.hexaware.cricketteammanagementsystem.repository.PlayerRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
+@Transactional
 public class PlayerServiceImp implements IPlayerService{
 
 	@Autowired
@@ -57,8 +60,13 @@ public class PlayerServiceImp implements IPlayerService{
 	}
 
 	@Override
-	public void deletePlayerById(int playerId) {
+	public void deletePlayerById(int playerId) throws PlayerNotFoundException {
 		
+		Player deletePlayer = playerRepository.findById(playerId).orElse(null);
+		if(deletePlayer==null)
+		{
+			throw new PlayerNotFoundException();
+		}
 		playerRepository.deleteById(playerId);
 		
 	}
@@ -68,6 +76,13 @@ public class PlayerServiceImp implements IPlayerService{
 		if(role.equalsIgnoreCase("Batsman")||role.equalsIgnoreCase("Bowler")||role.equalsIgnoreCase("Wicket Keeper")||role.equalsIgnoreCase("All Rounder"))
 			return true;
 		return false;
+	}
+
+	@Override
+	public int deletePlayersByTeam(String teamName) {
+		
+		
+		return playerRepository.deleteByTeamName(teamName);
 	}
 
 }

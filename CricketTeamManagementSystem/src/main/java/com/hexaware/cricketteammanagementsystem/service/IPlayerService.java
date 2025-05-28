@@ -16,6 +16,8 @@ public interface IPlayerService {
 	
 	public Player updatePlayerById(int playerId,Player player) throws PlayerNotFoundException;
 	
-	public void deletePlayerById(int playerId);
+	public void deletePlayerById(int playerId) throws PlayerNotFoundException;
+	
+	public int deletePlayersByTeam(String teamName);
 
 }
