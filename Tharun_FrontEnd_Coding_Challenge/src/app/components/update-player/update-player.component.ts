@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { PlayerDTO } from 'src/app/dto/playerDTO';
 import { PlayerService } from 'src/app/services/player.service';
 
@@ -7,12 +8,25 @@ import { PlayerService } from 'src/app/services/player.service';
   templateUrl: './update-player.component.html',
   styleUrls: ['./update-player.component.css']
 })
-export class UpdatePlayerComponent {
+export class UpdatePlayerComponent implements OnInit{
 
-   constructor(private playerService:PlayerService)
+    player!:PlayerDTO;
+
+   constructor(private playerService:PlayerService,private activatedRoute:ActivatedRoute)
     {
   
     }
+
+  ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(
+      (params)=>{
+        const playerId=params['playerId'];
+        this.playerService.getById(playerId).subscribe(
+          data=>{this.player=data;}
+        )
+      }
+    )
+  }
   
     updatePlayer(playerDTO:PlayerDTO)
     {

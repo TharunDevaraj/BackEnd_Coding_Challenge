@@ -15,15 +15,12 @@
           <a class="nav-link" routerLink="/addPlayer">Add Player</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/updatePlayer">Update Player</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" routerLink="/viewAll">View All</a>
         </li>
       </ul>
 
       <form class="d-flex" #searchInput="ngForm" (ngSubmit)="find(searchInput)">
-        <input class="form-control me-2" type="search" name="searchData" ngModel placeholder="Search">
+        <input class="form-control me-2" type="search" name="searchData" ngModel placeholder="Search by team name">
         <button class="btn btn-success" type="submit">Search</button>
       </form>
     </div>

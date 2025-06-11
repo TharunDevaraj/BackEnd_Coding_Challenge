@@ -38,8 +38,8 @@ export class ViewPlayerComponent implements OnInit{
         this.getAllPlayers();
       },
       (err) => {
-      console.error("Error deleting player", err);
-      alert("Failed to delete player");
+        console.error("Error deleting player", err);
+        alert("Failed to delete player");
     }
     )
   }

@@ -1,15 +1,17 @@
+<h3>Update Player Details :</h3>
+
 <form  #playerForm="ngForm"  class="container col-md-4" (ngSubmit)="updatePlayer(playerForm.value)">
     
   <div class="form-group">
     <label>Player Id:</label>
-    <input type="number" class="form-control" #idcontrol="ngModel" name="playerId" required ngModel 
-           [ngClass]="{'is-invalid': idcontrol.touched && idcontrol.invalid}" placeholder="Enter Player ID">
-    <span style="color: red;" *ngIf="namecontrol.touched && namecontrol.invalid">Player Id is Mandatory</span>
+    <input type="number" class="form-control" #idcontrol="ngModel" name="playerId" required [(ngModel)]="player.playerId"
+           [ngClass]="{'is-invalid': idcontrol.touched && idcontrol.invalid}" placeholder="Enter Player ID" readonly>
+    <span style="color: red;" *ngIf="idcontrol.touched && idcontrol.invalid">Player Id is Mandatory</span>
   </div>
 
   <div class="form-group">
     <label>Player Name:</label>
-    <input type="text" class="form-control" #namecontrol="ngModel" name="playerName" required ngModel 
+    <input type="text" class="form-control" #namecontrol="ngModel" name="playerName" required [(ngModel)]="player.playerName"
            [ngClass]="{'is-invalid': namecontrol.touched && namecontrol.invalid}" placeholder="Enter Player Name">
     <span style="color: red;" *ngIf="namecontrol.touched && namecontrol.invalid">Player Name is Mandatory</span>
   </div>
@@ -17,7 +19,7 @@
   <div class="form-group">
     <label>Jersey Number:</label>
     <input type="number" class="form-control" [ngClass]="{'is-invalid': jerseycontrol.touched && jerseycontrol.invalid}"
-           #jerseycontrol="ngModel" name="jerseyNumber" required ngModel min="1" max="999" placeholder="Enter Jersey Number">
+           #jerseycontrol="ngModel" name="jerseyNumber" required [(ngModel)]="player.jerseyNumber" min="1" max="999" placeholder="Enter Jersey Number">
     <div style="color: red;" *ngIf="jerseycontrol.touched && jerseycontrol.invalid">
       Jersey Number must be between 1 and 999
     </div>
@@ -27,7 +29,7 @@
     <label>Role:</label>
     <select class="form-control" 
             [ngClass]="{'is-invalid': rolecontrol.touched && rolecontrol.invalid}"
-            #rolecontrol="ngModel" name="role" required ngModel>
+            #rolecontrol="ngModel" name="role" required [(ngModel)]="player.role">
       <option value="" disabled selected>Select Role</option>
       <option value="Batsman">Batsman</option>
       <option value="Bowler">Bowler</option>
@@ -43,7 +45,7 @@
     <label>Total Matches:</label>
     <input type="number" class="form-control" 
            [ngClass]="{'is-invalid': matchescontrol.touched && matchescontrol.invalid}"
-           #matchescontrol="ngModel" name="totalMatches" required ngModel min="0" placeholder="Enter Total Matches">
+           #matchescontrol="ngModel" name="totalMatches" required [(ngModel)]="player.totalMatches" min="0" placeholder="Enter Total Matches">
     <div style="color: red;" *ngIf="matchescontrol.touched && matchescontrol.invalid">
       Total matches must be 0 or more
     </div>
@@ -53,7 +55,7 @@
     <label>Team Name:</label>
     <input type="text" class="form-control" 
            [ngClass]="{'is-invalid': teamcontrol.touched && teamcontrol.invalid}"
-           #teamcontrol="ngModel" name="teamName" required ngModel placeholder="Enter Team Name">
+           #teamcontrol="ngModel" name="teamName" required [(ngModel)]="player.teamName" placeholder="Enter Team Name">
     <div style="color: red;" *ngIf="teamcontrol.touched && teamcontrol.invalid">
       Team name is required
     </div>
@@ -63,7 +65,7 @@
     <label>Country:</label>
     <input type="text" class="form-control" 
            [ngClass]="{'is-invalid': countrycontrol.touched && countrycontrol.invalid}"
-           #countrycontrol="ngModel" name="country" required ngModel placeholder="Enter Country">
+           #countrycontrol="ngModel" name="country" required [(ngModel)]="player.country" placeholder="Enter Country">
     <div style="color: red;" *ngIf="countrycontrol.touched && countrycontrol.invalid">
       Country is required
     </div>
@@ -72,7 +74,7 @@
   <div class="form-group">
     <label>Description:</label>
     <textarea class="form-control" rows="3" 
-              #desccontrol="ngModel" name="description" ngModel placeholder="Enter Description (optional)"></textarea>
+              #desccontrol="ngModel" name="description" [(ngModel)]="player.description" placeholder="Enter Description (optional)"></textarea>
   </div>
 
   <button type="submit" class="btn btn-primary" [disabled]="playerForm.invalid">Submit</button>
