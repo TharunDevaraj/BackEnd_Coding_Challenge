@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,12 +87,11 @@ public class PlayerRestController {
 	}
 	
 	@DeleteMapping("/{playerId}")
-	public String deletePlayerById(@PathVariable int playerId) throws PlayerNotFoundException
-	{
-		playerService.deletePlayerById(playerId);
-		
-		return "Player Removed";
+	public ResponseEntity<String> deletePlayerById(@PathVariable int playerId) throws PlayerNotFoundException {
+	    playerService.deletePlayerById(playerId);
+	    return ResponseEntity.ok("Player Removed");
 	}
+
 	
 	
 	//delete player records by teamName
