@@ -1,0 +1,88 @@
+
+<form  #playerForm="ngForm"  class="container col-md-4" (ngSubmit)="addPlayer(playerForm.value)">
+    
+    <div class="form-group">
+    <label>Player Name:</label>
+    <input type="text" class="form-control"  #namecontrol="ngModel" name="playerName"  required ngModel  [ngClass]="{'is-invalid': namecontrol.touched && namecontrol.invalid}">
+    <span  style="color: red;"  *ngIf="namecontrol.touched && namecontrol.invalid">Player Name is Mandatory</span>
+    </div>
+
+    <div class="form-group">
+    <label>Jersey Number:</label>
+    <input type="number" class="form-control" [ngClass]="{'is-invalid': jerseycontrol.touched && jerseycontrol.invalid}"
+           #jerseycontrol="ngModel" name="jerseyNumber" required ngModel min="1" max="999">
+    <div style="color: red;" *ngIf="jerseycontrol.touched && jerseycontrol.invalid">
+      Jersey Number must be between 1 and 999
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Role:</label>
+    <select class="form-control" 
+            [ngClass]="{'is-invalid': rolecontrol.touched && rolecontrol.invalid}"
+            #rolecontrol="ngModel" name="role" required ngModel>
+      <option value="" disabled selected>Select Role</option>
+      <option value="Batsman">Batsman</option>
+      <option value="Bowler">Bowler</option>
+      <option value="All Rounder">All Rounder</option>
+      <option value="Wicket Keeper">Wicket Keeper</option>
+    </select>
+    <div style="color: red;" *ngIf="rolecontrol.touched && rolecontrol.invalid">
+      Role is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Total Matches:</label>
+    <input type="number" class="form-control" 
+           [ngClass]="{'is-invalid': matchescontrol.touched && matchescontrol.invalid}"
+           #matchescontrol="ngModel" name="totalMatches" required ngModel min="0">
+    <div style="color: red;" *ngIf="matchescontrol.touched && matchescontrol.invalid">
+      Total matches must be 0 or more
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Team Name:</label>
+    <input type="text" class="form-control" 
+           [ngClass]="{'is-invalid': teamcontrol.touched && teamcontrol.invalid}"
+           #teamcontrol="ngModel" name="teamName" required ngModel>
+    <div style="color: red;" *ngIf="teamcontrol.touched && teamcontrol.invalid">
+      Team name is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Country:</label>
+    <input type="text" class="form-control" 
+           [ngClass]="{'is-invalid': countrycontrol.touched && countrycontrol.invalid}"
+           #countrycontrol="ngModel" name="country" required ngModel>
+    <div style="color: red;" *ngIf="countrycontrol.touched && countrycontrol.invalid">
+      Country is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Description:</label>
+    <textarea class="form-control" rows="3" 
+              #desccontrol="ngModel" name="description" ngModel></textarea>
+  </div>
+    
+    
+    
+        
+    <button type="submit"  class="btn btn-primary" [disabled]="playerForm.invalid" >Submit</button>
+    
+    
+    </form>
+
+    <!-- <div class="form-group">
+    <label>Jersey Number:</label><input type="number"  class="form-control" #jerseycontrol="ngModel" name="jerseyNumber"  required ngModel>
+    <span  style="color: red;"  *ngIf="salcontrol.touched && salcontrol.invalid">Salary is Mandatory</span>
+    </div>
+    
+    <div class="form-group">
+    <label>DOJ:</label><input type="date"  class="form-control" #dojcontrol="ngModel" name="doj"  required ngModel>
+    <span  style="color: red;"  *ngIf="dojcontrol.touched && dojcontrol.invalid">DOJ is Mandatory</span>
+    </div> -->
+    

@@ -49,13 +49,26 @@ public class PlayerServiceImp implements IPlayerService{
 		{
 			throw new PlayerNotFoundException();
 		}
-		updatePlayer.setPlayerName(player.getPlayerName());
-	    updatePlayer.setJerseyNumber(player.getJerseyNumber());
-	    updatePlayer.setRole(player.getRole());
-	    updatePlayer.setTotalMatches(player.getTotalMatches());
-	    updatePlayer.setTeamName(player.getTeamName());
-	    updatePlayer.setCountry(player.getCountry());
-	    updatePlayer.setDescription(player.getDescription());
+		if (player.getPlayerName() != null && !player.getPlayerName().isEmpty())
+		    updatePlayer.setPlayerName(player.getPlayerName());
+
+		if (player.getJerseyNumber() > 0)
+		    updatePlayer.setJerseyNumber(player.getJerseyNumber());
+
+		if (player.getRole() != null && !player.getRole().isEmpty())
+		    updatePlayer.setRole(player.getRole());
+
+		if (player.getTotalMatches() >= 0)
+		    updatePlayer.setTotalMatches(player.getTotalMatches());
+
+		if (player.getTeamName() != null && !player.getTeamName().isEmpty())
+		    updatePlayer.setTeamName(player.getTeamName());
+
+		if (player.getCountry() != null && !player.getCountry().isEmpty())
+		    updatePlayer.setCountry(player.getCountry());
+
+		if (player.getDescription() != null && !player.getDescription().isEmpty())
+		    updatePlayer.setDescription(player.getDescription());
 		return playerRepository.save(updatePlayer);
 	}
 
@@ -85,5 +98,13 @@ public class PlayerServiceImp implements IPlayerService{
 		
 		return playerRepository.deleteByTeamName(teamName);
 	}
+
+	@Override
+	public List<Player> getPlayerByTeam(String teamName) {
+		
+		return playerRepository.findByTeamName(teamName).orElse(null);
+	}
+	
+	
 
 }

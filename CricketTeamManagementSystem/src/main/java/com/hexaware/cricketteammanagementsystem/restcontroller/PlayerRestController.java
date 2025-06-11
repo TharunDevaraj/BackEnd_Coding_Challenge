@@ -1,8 +1,10 @@
 package com.hexaware.cricketteammanagementsystem.restcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ import com.hexaware.cricketteammanagementsystem.service.IPlayerService;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/api/players")
 public class PlayerRestController {
@@ -44,6 +47,25 @@ public class PlayerRestController {
 			return EntityToDTO(player);
 		}
 		return null;
+		
+	}
+	
+	@GetMapping("/team/{teamName}")
+	public List<PlayerResponseDTO> getPlayerByTeam(@PathVariable String teamName)
+	{
+		List<Player> players = playerService.getPlayerByTeam(teamName);
+		
+		List<PlayerResponseDTO> playerDTOs=new ArrayList<>();
+		
+		if(players==null)
+		{
+			return null;
+		}
+		for(Player player:players)
+		{
+			playerDTOs.add(EntityToDTO(player));
+		}
+		return playerDTOs;
 		
 	}
 	
@@ -89,6 +111,10 @@ public class PlayerRestController {
 		dto.setPlayerName(player.getPlayerName());
 		dto.setJerseyNumber(player.getJerseyNumber());
 		dto.setRole(player.getRole());
+		dto.setTotalMatches(player.getTotalMatches());
+		dto.setTeamName(player.getTeamName());
+		dto.setCountry(player.getCountry());
+		dto.setDescription(player.getDescription());
 		return dto;
 	}
 

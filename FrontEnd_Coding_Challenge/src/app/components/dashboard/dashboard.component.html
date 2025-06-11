@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="addPlayer">Add Player</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="updatePlayer">Update Player</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="viewAll">View All</a>
+        </li>
+      </ul>
+
+      <form class="d-flex" #searchInput="ngForm" (ngSubmit)="find(searchInput)">
+        <input class="form-control me-2" type="search" name="searchData" ngModel placeholder="Search">
+        <button class="btn btn-success" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+<router-outlet></router-outlet>
