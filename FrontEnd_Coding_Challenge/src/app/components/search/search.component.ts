@@ -18,26 +18,21 @@ export class SearchComponent implements OnInit{
     
   }
   ngOnInit(): void {
-    this.search();
-  }
-
-  search()
-  {
-this.activateRoute.params.subscribe(
-  (params)=>{
-    this.searchInput=params['input']
-  }
-);
+    this.activateRoute.params.subscribe((params) => {
+    this.searchInput = params['input'];
 
     this.playerService.getByTeam(this.searchInput).subscribe(
-      (list)=> { 
+      (list) => {
         console.log("Received list from backend:", list);
         this.playerList = list;
       },
-      (err)=>{
-        console.error("fetching", err);
+      (err) => {
+        console.error("Error fetching players:", err);
       }
-    )
+    );
+  });
   }
+
+  
 
 }

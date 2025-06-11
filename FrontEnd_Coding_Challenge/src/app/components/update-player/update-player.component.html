@@ -1,22 +1,23 @@
-
 <form  #playerForm="ngForm"  class="container col-md-4" (ngSubmit)="updatePlayer(playerForm.value)">
     
-    <div class="form-group">
-        <label>Player Id:</label>
-        <input type="number" class="form-control" #idcontrol="ngModel" name="playerId" required ngModel [ngClass]="{'is-invalid': idcontrol.touched && idcontrol.invalid}">
-        <span  style="color: red;"  *ngIf="namecontrol.touched && namecontrol.invalid">Player Id is Mandatory</span>
-    </div>
+  <div class="form-group">
+    <label>Player Id:</label>
+    <input type="number" class="form-control" #idcontrol="ngModel" name="playerId" required ngModel 
+           [ngClass]="{'is-invalid': idcontrol.touched && idcontrol.invalid}" placeholder="Enter Player ID">
+    <span style="color: red;" *ngIf="namecontrol.touched && namecontrol.invalid">Player Id is Mandatory</span>
+  </div>
 
-    <div class="form-group">
+  <div class="form-group">
     <label>Player Name:</label>
-    <input type="text" class="form-control"  #namecontrol="ngModel" name="playerName"  required ngModel  [ngClass]="{'is-invalid': namecontrol.touched && namecontrol.invalid}">
-    <span  style="color: red;"  *ngIf="namecontrol.touched && namecontrol.invalid">Player Name is Mandatory</span>
-    </div>
+    <input type="text" class="form-control" #namecontrol="ngModel" name="playerName" required ngModel 
+           [ngClass]="{'is-invalid': namecontrol.touched && namecontrol.invalid}" placeholder="Enter Player Name">
+    <span style="color: red;" *ngIf="namecontrol.touched && namecontrol.invalid">Player Name is Mandatory</span>
+  </div>
 
-    <div class="form-group">
+  <div class="form-group">
     <label>Jersey Number:</label>
     <input type="number" class="form-control" [ngClass]="{'is-invalid': jerseycontrol.touched && jerseycontrol.invalid}"
-           #jerseycontrol="ngModel" name="jerseyNumber" required ngModel min="1" max="999">
+           #jerseycontrol="ngModel" name="jerseyNumber" required ngModel min="1" max="999" placeholder="Enter Jersey Number">
     <div style="color: red;" *ngIf="jerseycontrol.touched && jerseycontrol.invalid">
       Jersey Number must be between 1 and 999
     </div>
@@ -42,7 +43,7 @@
     <label>Total Matches:</label>
     <input type="number" class="form-control" 
            [ngClass]="{'is-invalid': matchescontrol.touched && matchescontrol.invalid}"
-           #matchescontrol="ngModel" name="totalMatches" required ngModel min="0">
+           #matchescontrol="ngModel" name="totalMatches" required ngModel min="0" placeholder="Enter Total Matches">
     <div style="color: red;" *ngIf="matchescontrol.touched && matchescontrol.invalid">
       Total matches must be 0 or more
     </div>
@@ -52,7 +53,7 @@
     <label>Team Name:</label>
     <input type="text" class="form-control" 
            [ngClass]="{'is-invalid': teamcontrol.touched && teamcontrol.invalid}"
-           #teamcontrol="ngModel" name="teamName" required ngModel>
+           #teamcontrol="ngModel" name="teamName" required ngModel placeholder="Enter Team Name">
     <div style="color: red;" *ngIf="teamcontrol.touched && teamcontrol.invalid">
       Team name is required
     </div>
@@ -62,7 +63,7 @@
     <label>Country:</label>
     <input type="text" class="form-control" 
            [ngClass]="{'is-invalid': countrycontrol.touched && countrycontrol.invalid}"
-           #countrycontrol="ngModel" name="country" required ngModel>
+           #countrycontrol="ngModel" name="country" required ngModel placeholder="Enter Country">
     <div style="color: red;" *ngIf="countrycontrol.touched && countrycontrol.invalid">
       Country is required
     </div>
@@ -71,17 +72,9 @@
   <div class="form-group">
     <label>Description:</label>
     <textarea class="form-control" rows="3" 
-              #desccontrol="ngModel" name="description" ngModel></textarea>
+              #desccontrol="ngModel" name="description" ngModel placeholder="Enter Description (optional)"></textarea>
   </div>
-    
-    
-    
-        
-    <button type="submit"  class="btn btn-primary" [disabled]="playerForm.invalid" >Submit</button>
-    
-    
-    </form>
 
-    
-    
+  <button type="submit" class="btn btn-primary" [disabled]="playerForm.invalid">Submit</button>
 
+</form>

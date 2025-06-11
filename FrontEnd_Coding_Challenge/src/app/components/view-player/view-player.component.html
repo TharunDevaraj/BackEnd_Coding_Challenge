@@ -1,13 +1,26 @@
-
-<div class="container">
-  <table class="table table-primary col-sm-5">
-    <thead class="table-primary">
-      <tr><th>Player Id</th><th>Player Name</th><th>Jersey Number</th><th>Role</th><th>Team Name</th></tr>
+<div class="container d-flex justify-content-center my-5">
+  <table class="table table-bordered table-hover w-75">
+    <thead class="bg-primary text-white">
+      <tr>
+        <th>Player Id</th>
+        <th>Player Name</th>
+        <th>Jersey Number</th>
+        <th>Role</th>
+        <th>Team Name</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let player of playerList"><td>{{ player.playerId }}</td><td>{{ player.playerName }}</td><td>{{ player.jerseyNumber }}</td><td>{{ player.role }}</td><td>{{player.teamName}}</td>
-    <td><button type="button" class="btn btn-danger"  (click)="deleteById(player.playerId)" >Delete</button></td>
-    </tr>
+      <tr *ngFor="let player of playerList">
+        <td>{{ player.playerId }}</td>
+        <td>{{ player.playerName }}</td>
+        <td>{{ player.jerseyNumber }}</td>
+        <td>{{ player.role }}</td>
+        <td>{{ player.teamName }}</td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm" (click)="deleteById(player.playerId)">Delete</button>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

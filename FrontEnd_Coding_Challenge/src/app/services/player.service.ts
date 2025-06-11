@@ -45,6 +45,6 @@ export class PlayerService {
   deletePlayer(playerId:number):Observable<string>
   {
     console.log("In service: deletePlayer method called")
-    return this.http.delete<string>(this.baseURL+playerId);
+    return this.http.delete(this.baseURL+playerId, { responseType: 'text' });
   }
 }
